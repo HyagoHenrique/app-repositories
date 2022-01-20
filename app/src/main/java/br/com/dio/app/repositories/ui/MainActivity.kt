@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 }
                 is MainViewModel.State.Success -> {
                     dialog.dismiss()
+                    if (it.list.isEmpty()) {
+                        createDialog {
+                            setMessage("usuario não encontrado")
+                        }.show()
+                    }
                     adapter.submitList(it.list)
                 }
             }
